@@ -16,8 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "proxy": "node proxy.js"
-  },
+    "start-backend": "node proxy.js"
+},
   "proxy": "http://localhost:3001",
   "browserslist": {
     "production": [
