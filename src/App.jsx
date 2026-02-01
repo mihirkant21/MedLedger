@@ -302,16 +302,20 @@ export default function App() {
     setTimeout(() => setToast(null), 2800);
   };
 
-  // ── FILE PROCESSING (OpenAI gpt-4o) ──
+  // ── FILE PROCESSING ──
   const processFile = async (file) => {
     if (!file) return;
     setIsProcessing(true);
 
+    // Read file as base64 — strip the "data:..." prefix, keep only the raw base64
     const base64 = await new Promise((resolve) => {
       const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target.result);
+      reader.onload = (e) => resolve(e.target.result.split(",")[1]);
       reader.readAsDataURL(file);
     });
+
+    // Rebuild the full data URL with the correct mime type
+    const dataUrl = "data:" + file.type + ";base64," + base64;
 
     try {
       const response = await fetch("http://localhost:3001/api/chat", {
@@ -327,7 +331,7 @@ export default function App() {
                 {
                   type: "image_url",
                   image_url: {
-                    url: base64,
+                    url: dataUrl,
                   },
                 },
                 {
@@ -477,7 +481,7 @@ Extract and structure the following information. Return ONLY a valid JSON object
               <div className="feature-card">
                 <div className="f-icon">🧠</div>
                 <h4>AI Extraction</h4>
-                <p>GPT-4o extracts and structures all data automatically</p>
+                <p>Gemini AI extracts and structures all data automatically</p>
               </div>
               <div className="feature-card">
                 <div className="f-icon">📁</div>
