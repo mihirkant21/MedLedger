@@ -463,7 +463,7 @@ Extract and structure the following information. Return ONLY a valid JSON object
               <div className="logo-icon">
                 <Activity size={26} color="#fff" />
               </div>
-              <h1>MedScan</h1>
+              <h1>MedLedger</h1>
             </div>
             <p className="landing-sub">
               Upload your medical reports, prescriptions, or scans. Our AI extracts,
@@ -506,7 +506,7 @@ Extract and structure the following information. Return ONLY a valid JSON object
                 <div className="logo-icon">
                   <Activity size={18} color="#fff" />
                 </div>
-                <span>MedScan</span>
+                <span>MedLedger</span>
               </div>
               <div
                 className={`nav-item ${page === "dashboard" && !selectedReport ? "active" : ""}`}
